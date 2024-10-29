@@ -20,15 +20,28 @@ namespace Backend2.Services
 
         public async Task InsertarPedido(int empleadoId, DateTime fechaPedido, int prendaId,string talle, int cantidad)
         {
-            var empleadoIdParam = new SqlParameter("@EmpleadoId", empleadoId);
-            var fechaPedidoParam = new SqlParameter("@FechaPedido", fechaPedido);
-            var prendaIdParam = new SqlParameter("@IdPrenda", prendaId);
-            var talleParam = new SqlParameter("@Talle", talle);
-            var cantidadParam = new SqlParameter("@Cantidad", cantidad);
+            try
+            {
+                var fechaPedidoValue = DateTime.Now; // Asignar fecha actual si es nulo
+                
 
-           await _context.Database.ExecuteSqlRawAsync
-                ("exec InsertarPedidoEmpleado @EmpleadoId,@FechaPedido, @IdPrenda,@Talle, @Cantidad", 
-                empleadoIdParam, fechaPedidoParam, prendaIdParam, talleParam, cantidadParam);
+                var empleadoIdParam = new SqlParameter("@EmpleadoId", empleadoId);
+                var fechaPedidoParam = new SqlParameter("@FechaPedido", fechaPedidoValue);
+                var prendaIdParam = new SqlParameter("@IdPrenda", prendaId);
+                var talleParam = new SqlParameter("@Talle", talle);
+                var cantidadParam = new SqlParameter("@Cantidad", cantidad);
+                Console.WriteLine();
+                await _context.Database.ExecuteSqlRawAsync
+                     ("exec InsertarPedidoEmpleado @EmpleadoId,@FechaPedido, @IdPrenda, @Talle, @Cantidad",
+                     empleadoIdParam, fechaPedidoParam, prendaIdParam, talleParam, cantidadParam);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Error al insertar el pedido: {ex.Message}");
+            }
             
         }
     }

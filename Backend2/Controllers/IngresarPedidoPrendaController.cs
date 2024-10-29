@@ -1,4 +1,5 @@
-﻿using Backend2.Services;
+﻿using Backend2.Models;
+using Backend2.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,33 +21,34 @@ namespace Backend2.Controllers
         }
 
         // GET: api/<IngresarPedidoPrendaController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<IngresarPedidoPrendaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        //// POST api/<IngresarPedidoPrendaController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
+        //[HttpGet]
+        //public IEnumerable<string> Get()
         //{
+        //    return new string[] { "value1", "value2" };
         //}
+
+        //// GET api/<IngresarPedidoPrendaController>/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
+
+        ////// POST api/<IngresarPedidoPrendaController>
+        ////[HttpPost]
+        ////public void Post([FromBody] string value)
+        ////{
+        ////}
 
         // POST api/<IngresarPedidoPrendaController>
         [HttpPost]
-        public async Task<IActionResult> InsertarPedido(int empleadoId, DateTime fechaPedido, int prendaId,string talle, int cantidad)
+        public async Task<IActionResult> InsertarPedido([FromBody]InsertarPedidoPrenda pedidoPrenda)
         {
             try
             {
-                await _insertarPedidoSerivce.InsertarPedido(empleadoId, fechaPedido, prendaId, talle, cantidad);
-                return Ok("Insertado con Exito ...!!");
+                await _insertarPedidoSerivce.InsertarPedido
+                    (pedidoPrenda.EmpleadoId, pedidoPrenda.FechaPedido , pedidoPrenda.IdPrenda, pedidoPrenda.Talle, pedidoPrenda.Cantidad);
+                return Ok(new { message = "Pedido insertado con éxito." });
             }
             catch (Exception ex)
             {
@@ -55,16 +57,16 @@ namespace Backend2.Controllers
             }
         }
 
-        // PUT api/<IngresarPedidoPrendaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<IngresarPedidoPrendaController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<IngresarPedidoPrendaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<IngresarPedidoPrendaController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

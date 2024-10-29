@@ -11,6 +11,7 @@ namespace Backend2.Data
     {
         public DbSet<Empleados> Empleados { get; set; }
         public DbSet<Pedidos> Pedidos { get; set; }
+        public DbSet<Prendas> Prendas { get; set; }
         public DbSet<PrendasPedidas> PrendasPedidas { get; set; }
         public DbSet<EmpleadoPrendaPedida> EmpleadoPrendaPedidas { get; set; }
         public DbSet<InsertarPedidoPrenda> InsertarPedidoPrenda { get; set; }
