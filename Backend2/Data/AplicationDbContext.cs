@@ -15,7 +15,8 @@ namespace Backend2.Data
         public DbSet<PrendasPedidas> PrendasPedidas { get; set; }
         public DbSet<EmpleadoPrendaPedida> EmpleadoPrendaPedidas { get; set; }
         public DbSet<InsertarPedidoPrenda> InsertarPedidoPrenda { get; set; }
-
+        public DbSet<PedidoConPrendas> PedidoConPrendas { get; set; }
+        public DbSet<PrendaPedido> PrendaPedido { get; set; }
 
         public AplicationDbContext(DbContextOptions<AplicationDbContext> options) : base(options)
         { 
@@ -33,9 +34,14 @@ namespace Backend2.Data
            
             modelBuilder.Entity<InsertarPedidoPrenda>().HasNoKey();  // Configura la entidad como sin clave
 
+            modelBuilder.Entity<PedidoConPrendas>().HasNoKey(); // Para modelos sin clave primaria
+
+            modelBuilder.Entity<PrendaPedido>().HasNoKey(); // Para modelos sin clave primaria
+
+
         }
 
-        
+
 
     }
 
