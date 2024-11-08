@@ -36,26 +36,28 @@ namespace Backend2.Controllers
             }
         }
 
-        // GET api/<EmpleadoController>/5 -- Obtiene un empleado en especifico
-        [HttpGet("{id}")] 
-        public async Task<IActionResult> Get(int id)
+        //Para filtra por nombre o apellido
+        [HttpGet("Filtrar")]
+        public async Task<IActionResult> FiltrarEmpleado([FromQuery] string nombre, [FromQuery] string apellido)
         {
             try
             {
-                var empleados = await _context.Empleados.FindAsync(id);
-                if (empleados == null)
+                var empleados = await _context.Empleados
+                    .FromSqlInterpolated($"EXEC FiltrarEmpleado @nombre = {nombre}, @apellido = {apellido}")
+                    .ToListAsync();
+
+                if (empleados == null || empleados.Count == 0)
                 {
                     return NotFound();
                 }
 
-                return Ok(empleados); 
+                return Ok(empleados);
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
-           
+
         }
 
         // POST api/<EmpleadoController> Ingresa un Empleados
@@ -83,9 +85,16 @@ namespace Backend2.Controllers
             {
                 if (id != empleados.Id) 
                 {
-                    return NotFound();
+                    return BadRequest("El ID de la URL no coincide con el ID del objeto.");
                 }
-                _context.Update(empleados);
+                var existingEmpleado = await _context.Empleados.FindAsync(id);
+                if (existingEmpleado == null)
+                {
+                    return NotFound("El empleado no existe.");
+                }
+                existingEmpleado.Nombre = empleados.Nombre;
+                existingEmpleado.Apellido = empleados.Apellido;
+                //_context.Update(empleados);
                 await _context.SaveChangesAsync();
                 return Ok(new { message = "Registro Actualizado con Exito ...!!!" });
 
@@ -118,5 +127,27 @@ namespace Backend2.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        //[HttpGet("{id}")] 
+        // GET api/<EmpleadoController>/5 -- Obtiene un empleado en especifico
+        //public async Task<IActionResult> Get(int id)
+        //{
+        //    try
+        //    {
+        //        var empleados = await _context.Empleados.FindAsync(id);
+        //        if (empleados == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return Ok(empleados);
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return BadRequest(ex.Message);
+        //    }
+
+        //}
     }
 }
