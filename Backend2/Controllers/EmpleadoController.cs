@@ -64,16 +64,33 @@ namespace Backend2.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Empleados empleados)
         {
+            if (!ModelState.IsValid)
+            {
+                // Registrar el ModelState para ver si algún campo no está validado correctamente
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                              .Select(e => e.ErrorMessage)
+                                              .ToList();
+                return BadRequest(new { Message = "Error de validación", Errors = errors });
+            }
+
             try
             {
+                if (empleados == null)
+                    return BadRequest("El empleado no puede ser nulo");
+
                 _context.Add(empleados);
                 await _context.SaveChangesAsync();
                 return Ok(empleados);
             }
+            catch (DbUpdateException dbEx)
+            {
+                var innerMessage = dbEx.InnerException?.Message ?? dbEx.Message;
+                return BadRequest($"Error al guardar el empleado: {innerMessage}");
+            }
             catch (Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest($"{ ex.Message}");
             }
         }
 
@@ -87,14 +104,16 @@ namespace Backend2.Controllers
                 {
                     return BadRequest("El ID de la URL no coincide con el ID del objeto.");
                 }
-                var existingEmpleado = await _context.Empleados.FindAsync(id);
-                if (existingEmpleado == null)
-                {
-                    return NotFound("El empleado no existe.");
-                }
-                existingEmpleado.Nombre = empleados.Nombre;
-                existingEmpleado.Apellido = empleados.Apellido;
-                //_context.Update(empleados);
+                //var existingEmpleado = await _context.Empleados.FindAsync(id);
+                //if (existingEmpleado == null)
+                //{
+                //    return NotFound("El empleado no existe.");
+                //}
+                //existingEmpleado.Nombre = empleados.Nombre;
+                //existingEmpleado.Apellido = empleados.Apellido;
+                //existingEmpleado.Email = empleados.Email;
+                //existingEmpleado.TallePredeterminado = empleados.TallePredeterminado;
+                _context.Update(empleados);
                 await _context.SaveChangesAsync();
                 return Ok(new { message = "Registro Actualizado con Exito ...!!!" });
 

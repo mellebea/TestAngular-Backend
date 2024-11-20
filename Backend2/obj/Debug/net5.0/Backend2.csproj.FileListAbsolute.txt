@@ -5,7 +5,6 @@ C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\Backend2.deps.json
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\Backend2.runtimeconfig.json
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\Backend2.runtimeconfig.dev.json
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\Backend2.dll
-C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\ref\Backend2.dll
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\Backend2.pdb
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\Humanizer.dll
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
@@ -51,11 +50,12 @@ C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.csproj.Co
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.MvcApplicationPartsAssemblyInfo.cs
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.MvcApplicationPartsAssemblyInfo.cache
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\staticwebassets\Backend2.StaticWebAssets.Manifest.cache
-C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\staticwebassets\Backend2.StaticWebAssets.xml
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\scopedcss\bundle\Backend2.styles.css
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.RazorTargetAssemblyInfo.cache
-C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.csproj.CopyComplete
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.dll
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\ref\Backend2.dll
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.pdb
 C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.genruntimeconfig.cache
+C:\PROYANGULAR\TestAngular\Backend2\Backend2\bin\Debug\net5.0\ref\Backend2.dll
+C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\staticwebassets\Backend2.StaticWebAssets.xml
+C:\PROYANGULAR\TestAngular\Backend2\Backend2\obj\Debug\net5.0\Backend2.csproj.CopyComplete
