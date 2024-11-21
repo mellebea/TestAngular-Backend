@@ -1,4 +1,5 @@
 ﻿using Backend2.Data;
+using Backend2.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,10 +15,16 @@ namespace Backend2.Controllers
     [ApiController]
     public class PrendasController : ControllerBase
     {
+        private readonly ObtenerPrendasEntregadasServices PrendasEntregadasServices;
+
+     
+        
         private readonly AplicationDbContext _context;
-        public PrendasController(AplicationDbContext context) 
+
+        public PrendasController(AplicationDbContext context, ObtenerPrendasEntregadasServices obtenerPEServices) 
         {
             _context = context;
+            PrendasEntregadasServices = obtenerPEServices;
         }
         // GET: api/<PrendasController>
         [HttpGet]
@@ -27,6 +34,24 @@ namespace Backend2.Controllers
             {
                 var listadoPrendas = await _context.Prendas.ToListAsync();
                 return Ok(listadoPrendas);
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // GET: api/<PrendasController>
+        [HttpGet("Filtrar")]
+        public async Task<IActionResult> FiltrarPrendaEntregadas([FromQuery] string nombre, [FromQuery] string apellido)
+        {
+            try
+            {
+                var PrendasEntrgadas = await PrendasEntregadasServices
+                    .ObtenerPrendasEntregadas(nombre,apellido);
+                return Ok(PrendasEntrgadas);
 
             }
             catch (Exception ex)

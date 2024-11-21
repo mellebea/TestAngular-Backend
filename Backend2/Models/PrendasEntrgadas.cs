@@ -7,9 +7,11 @@ namespace Backend2.Models
 {
     public class PrendasEntrgadas
     {
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public int Id { get; set; }
-        public int PedidoId { get; set; }
-	    public int PrendaId { get; set; }
-	    public DateTime FechaEntrega { get; set; }
+        public DateTime FechaPedido { get; set; }
+        public string NombrePrenda { get; set; }
+        public DateTime FechaEntrega { get; set; }
     }
 }

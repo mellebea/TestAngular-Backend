@@ -27,6 +27,7 @@ namespace Backend2
             services.AddScoped<PrendaPedidaService>();
             services.AddScoped<InsertarPedidoSerivce>();
             services.AddScoped<PedidoService>();
+            services.AddScoped<ObtenerPrendasEntregadasServices>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
