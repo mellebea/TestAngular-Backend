@@ -61,6 +61,28 @@ namespace Backend2.Controllers
             }
         }
 
+        // GET: api/<PrendasController>
+        //Listado de prendas entregadas con el modelo de datos PrendasEntregadas
+        [HttpGet("Listado")]
+        public async Task<IActionResult> ListarPrendaEntregadas([FromQuery] string nombre, [FromQuery] string apellido)
+        {
+            nombre = "";
+            apellido = "";
+
+            try
+            {
+                var PrendasEntrgadas = await PrendasEntregadasServices
+                    .ObtenerPrendasEntregadas(nombre, apellido);
+                return Ok(PrendasEntrgadas);
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         // GET api/<PrendasController>/5
         //[HttpGet("{id}")]
         //public string Get(int id)
